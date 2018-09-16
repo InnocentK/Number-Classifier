@@ -1,0 +1,244 @@
+# File:    design1.txt
+# Author:  Innocent Kironji
+# Date:    03/08/2017
+# Section: CMSC201-22
+# E-mail:  wambugu1@umbc.edu 
+# Description:
+#   This is the psuedocode for Project 1.
+#   Project 1's purpose is to be able to give information about a list
+#   of numbers based on a range recieved by the user that follows
+#   certain guidelines
+
+MIN_NUM = 1         # minimum number allowed
+MAX_NUM = 100000    # maximum number allowed
+
+PERF = "Perfect"    # return values for checkForPerfect function
+ABD  = "Abundant"
+DEF  = "Deficient"
+
+######################################################################
+# printGreeting() explains the program to the user
+
+# Input:          none
+# Output:         none (prints greeting)
+
+#Greeting explains purpose of the program and what the user will be doing
+
+
+######################################################################
+#printTableHead() prints the heading of the table
+
+#Input:           none
+#Output:          none (prints table heading)
+
+#Labels the num (as "Int") and Classifications and follows it with periods and then dashes on the line underneath
+
+
+######################################################################
+#printTableLine(input1, input2, input3, input4, input5, input6)
+#     prints the information for one number on one line of the table
+
+#Input:    num;    integer that is undergoing the five tests
+#	   odd;    Boolean that runs num through isOdd()
+#	   prime;  Boolean that runs num through isPrime()
+#	   perf;   string that runs num through checkForPerfect()
+#	   square; Boolean that runs num through isSquare()
+#	   tri;    Boolean that runs num through isTriangular()
+#Output:   none (prints info on number)
+
+#Will line up the final table through use of the functions end ='' and \t
+#If odd equals true
+#   prints "Odd" then leaves some space for the next entry
+#Else
+#   prints "Even" then leaves space for next entry
+
+#If num is 1
+#   prints "Neither" and leaves space for next entry
+#Else, if prime equals true
+#   prints "Prime" and leaves space for next entryy
+#Else
+#   prints "Composite" and leaves space for next entry
+
+#Prints value for perf then leaves space for next entry
+
+#If square is true
+#   prints "Square" then leaves space for next entry
+#Else
+#   prints an empty space then leaves space for next entry
+
+#If tri is true
+#   prints "Triangular" and ends the line
+#Else
+#   prints a space and ends the line
+    
+
+######################################################################
+# getValidInt(input1, input2) reprompts the user until they enter a number
+#                             between a minimum and maximum (inclusive)
+
+# Input:        minn;   integer of lower accepted range
+#               maxx;   integer of upper accepted range
+# Output:       newInt; integer between minn and maxx inclusive
+
+#Asks user for a number between minn and maxx
+#Assigns that number to newInt
+#Creates a while loop that runs while newInt is smaller than min or larger than maxx
+#	 Tells the user the number is not valid
+#	 Asks user to redefine newInt given the parameters
+#End of loop
+#Return output
+
+
+######################################################################
+#isDivisor(input1, input2) calculates if a number is divisable by another
+#		   	   number
+
+#Input:    origNum;    integer you will divise against
+#	   possDiv;    integer you will check for divisability
+#Output:   numIsDiv;   Boolean that says if origNum is divisable by
+#	   	       possDiv (returns True if divisable, False if not)
+
+#Creates numIsDiv and sets to False (until proven true)
+#regQuotient is the variable for the float of origNum / possDiv 
+#evenQuotient is the variable for the float of origNum // possDiv
+#if regQuotient equals evenQuotient (meaning regQuotient would end in zeros)
+#   numIsDiv is set to True
+#Otherwise numIsDiv remains False
+#Return output
+
+
+######################################################################
+#sumDivisors(input) calculates the sum of the divisors of a number
+
+#Input:    num;    integer that we will be summing the divisors of
+#Output:   summ;   integer that is the sum of num's divisors
+
+#Creates a list that will hold all numbers num is divisable by (empty list)
+#Creates a counter (equals 1)
+#Will create a loop running from 1 to num (exclusive)
+#     Will append the list with any number that outputs true for isDivisor()
+#     Update counter (+1)
+#End of loop
+#Resets counter (equals 0 again)
+#Creates variable for summ (equals 0)
+#Creates a new loop running from 0 to length of list (exclusive)
+#	 Adds current value of list to sum
+#	 Update counter (+1)
+#End of loop
+#Return output
+
+
+######################################################################
+#checkForPerfect(input)    calculates sum of dividers and returns whether
+#			   that sum is perfect, abundant, or deficient
+
+#Input:    num;    an integer that is being checked to see if it is
+#                  perfect, abundant or deficient
+#Output:   PERF/ABD/DEF;    string that depends on whether the number is
+#                           equal to the sum of it's dividers (PERF), is
+#                           less than the sum (ABD) or more than the sum
+#                           (DEF)
+
+#Calls sumDivisors() and sets it equal to summ
+#If summ equals num
+#   Return PERF
+#Else, if summ is greater than num
+#   Return ABD
+#Else, if summ is smaller than num
+#   Return DEF
+
+ 
+######################################################################
+# isOdd(input) calculates whether num is odd or not
+
+# Input:  num;      an integer we're checking for oddness
+# Output: numIsOdd; a Boolean that says if num is odd
+#                   (returns True if odd, False if even)
+
+#Creates numIsOdd and sets to False
+#If num modulous 2 does not equal 0
+#   numIsOdd is set to True
+#Otherwise  numIsOdd stays False
+#Return output
+
+
+######################################################################
+#isPrime(input)    calculates whether num is prime or not
+
+#Input:    num;        an integer we're checking for primeness
+#Output:   numIsPrime; a Boolean that says if num is prime
+#                      (returns True if prime, False if composite)
+
+#Creates numIsPrime and sets to False
+#Calls sumDivisors and sets it equal to onlyOne
+#If onlyOne equals 1
+#   numIsPrime is set to True
+#Otherwise numIsPrime remains False
+#Return output 
+
+
+######################################################################
+#isSquare(input)    calculates whether num is square or not
+
+#Input:    num;         an integer we're checking for squareness
+#Output:   numIsSquare; a Boolean that says if num is square
+#                       (returns True if square, False if not)
+
+#Creates numIsSquare and sets to False
+#Create counter called currentNum (equals 1)
+#Creates loop that runs from 1 to num
+#	 Create a quotient variable to hold the value of num divided by
+#	 current num
+#	 if the current number equals the quotient (of num and current num)
+#	    numIsSquare is set to True
+#	 Otherwise numIsSquare remains False
+#	 Updates counter (+1)
+#End of loop
+#Return output
+
+
+######################################################################
+#isTriangular(input)    calculates whether num is triangular or not
+
+#Input:    num;             an integer we're checking for triangularness
+#Output:   numIsTri; a Boolean that says if num is triangular
+#                           (returns True if triangular, False if not)
+
+#Creates numIsTri and sets to False
+#Creates counter (equal to 1)
+#Creates variable currentSum (equal to 0)
+#Because 1 does not follow the rules for triangularness and is an exception:
+#if num is equal to 1
+#   numisTri is set to True
+#Creates a loop that runs from 1 until num
+#	 currentSum equals itself plus counter
+#	 if currentSum equals num
+#	    numIsTri is set to True
+#	 Updates counter (+1)
+#End of loop
+#Returns output
+
+def main():
+    # print the greeting to the user
+    printGreeting()
+
+    # get the number range from the user
+    getValidInt() x2
+
+    # before we start printing the number info, print the table head
+    printTableHead()
+
+    #create a counter (equal to minn)
+
+    # print out all of the numbers and their properties
+    while (from starting number to end):
+        # get if the current number is odd, prime, perfect, [PUT MORE HERE]
+        #set odd equal to isOdd()
+        #set prime equal to isPrime()
+	#set perf equal to checkForPerfect()
+        #set square equal to isSquare()
+	#set tri equal to isTriangular()
+	printTableLine()
+	#Updates counter (+1)
+
+main()
